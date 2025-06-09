@@ -85,39 +85,49 @@
     <button class="nav-button nav-right" id="nextBtn">&#8594;</button>
   </div>
 
-  <script>
-    const totalImages = 12;
-    let currentIndex = 0;
+<script>
+  const totalImages = 12;
+  let currentIndex = 0;
 
-    function updateGalleryPosition() {
-      const imgPath = `images/${currentIndex + 1}.png`;
-      $('#currentImage').attr('src', imgPath);
-      $('#pageIndicator').text(`${currentIndex + 1} / ${totalImages}`);
+  function updateGalleryPosition() {
+    const imgPath = `images/${currentIndex + 1}.png`;
+    $('#currentImage').attr('src', imgPath);
+    $('#pageIndicator').text(`${currentIndex + 1} / ${totalImages}`);
+
+    if (currentIndex + 1 < totalImages) {
+      const nextImg = new Image();
+      nextImg.src = `images/${currentIndex + 2}.png`;
     }
 
-    $(document).ready(function() {
-      $('#nextBtn').click(function() {
-        if (currentIndex < totalImages - 1) {
-          currentIndex++;
-          updateGalleryPosition();
-        }
-      });
+    if (currentIndex - 1 >= 0) {
+      const prevImg = new Image();
+      prevImg.src = `images/${currentIndex}.png`;
+    }
+  }
 
-      $('#prevBtn').click(function() {
-        if (currentIndex > 0) {
-          currentIndex--;
-          updateGalleryPosition();
-        }
-      });
-
-      $(document).keydown(function(e) {
-        if (e.key === 'ArrowRight') $('#nextBtn').click();
-        if (e.key === 'ArrowLeft') $('#prevBtn').click();
-      });
-
-      updateGalleryPosition();
+  $(document).ready(function () {
+    $('#nextBtn').click(function () {
+      if (currentIndex < totalImages - 1) {
+        currentIndex++;
+        updateGalleryPosition();
+      }
     });
-  </script>
+
+    $('#prevBtn').click(function () {
+      if (currentIndex > 0) {
+        currentIndex--;
+        updateGalleryPosition();
+      }
+    });
+
+    $(document).keydown(function (e) {
+      if (e.key === 'ArrowRight') $('#nextBtn').click();
+      if (e.key === 'ArrowLeft') $('#prevBtn').click();
+    });
+
+    updateGalleryPosition(); // 初始显示
+  });
+</script>
 
 </body>
 </html>
