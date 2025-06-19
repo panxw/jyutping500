@@ -90,18 +90,18 @@
   let currentIndex = 0;
 
   function updateGalleryPosition() {
-    const imgPath = `images/${currentIndex + 1}.png`;
+    const imgPath = `images/1-${currentIndex + 1}.png`;
     $('#currentImage').attr('src', imgPath);
     $('#pageIndicator').text(`${currentIndex + 1} / ${totalImages}`);
 
     if (currentIndex + 1 < totalImages) {
       const nextImg = new Image();
-      nextImg.src = `images/${currentIndex + 2}.png`;
+      nextImg.src = `images/1-${currentIndex + 2}.png`;
     }
 
     if (currentIndex - 1 >= 0) {
       const prevImg = new Image();
-      prevImg.src = `images/${currentIndex}.png`;
+      prevImg.src = `images/1-${currentIndex}.png`;
     }
   }
 
